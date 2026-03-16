@@ -1,0 +1,12 @@
+app/data/analysisEngine.ts(84,37): error TS2582: Cannot find name 'test'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+app/hooks/useWhisperSTT.ts(3,23): error TS2307: Cannot find module 'expo-av' or its corresponding type declarations.
+app/hooks/useWhisperSTT.ts(4,45): error TS2307: Cannot find module 'whisper.rn' or its corresponding type declarations.
+app/screens/AudioScreen.tsx(6,33): error TS2307: Cannot find module 'expo-document-picker' or its corresponding type declarations.
+app/screens/AudioScreen.tsx(37,52): error TS7006: Parameter 'a' implicitly has an 'any' type.
+app/screens/VoiceScreen.tsx(4,25): error TS2305: Module '"react-native"' has no exported member 'useRef'.
+app/screens/VoiceScreen.tsx(122,11): error TS2322: Type '{ score: number; confidence: number; redFlags: string[]; showFlags: true; }' is not assignable to type 'IntrinsicAttributes & Props'.
+  Property 'redFlags' does not exist on type 'IntrinsicAttributes & Props'.
+app/whisper/useWhisperTranscription.ts(2,23): error TS2307: Cannot find module 'expo-av' or its corresponding type declarations.
+app/whisper/useWhisperTranscription.ts(4,45): error TS2307: Cannot find module 'whisper.rn' or its corresponding type declarations.
+app/whisper/useWhisperTranscription.ts(25,31): error TS2339: Property 'documentDirectory' does not exist on type 'typeof import("C:/Users/prana/Desktop/G/PhishGuard/node_modules/expo-file-system/build/index")'.
+app/whisper/WhisperModel.ts(6,37): error TS2339: Property 'documentDirectory' does not exist on type 'typeof import("C:/Users/prana/Desktop/G/PhishGuard/node_modules/expo-file-system/build/index")'.

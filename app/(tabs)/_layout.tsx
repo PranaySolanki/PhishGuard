@@ -1,35 +1,90 @@
-import { Tabs } from 'expo-router';
 import React from 'react';
+import { withLayoutContext } from 'expo-router';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { SafeAreaView, StatusBar, Platform, StyleSheet, View } from 'react-native';
+import { colors } from '../theme/colors';
+import AppHeader from '../../components/AppHeader';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+const MaterialTopTabs = createMaterialTopTabNavigator().Navigator;
+const Tabs = withLayoutContext(MaterialTopTabs);
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+    <View style={styles.container}>
+      <AppHeader subtitle="AI-powered scam detector" />
+      <View style={styles.tabContainer}>
+        <Tabs
+          screenOptions={{
+            tabBarStyle: styles.tabBar,
+            tabBarIndicatorStyle: styles.tabIndicator,
+            tabBarItemStyle: styles.tabItem,
+            tabBarLabelStyle: styles.tabLabel,
+            tabBarActiveTintColor: '#ffffff',
+            tabBarInactiveTintColor: colors.textMuted,
+            tabBarPressColor: 'transparent',
+            swipeEnabled: true,
+          }}
+        >
+          <Tabs.Screen
+            name="index"
+            options={{ title: 'Scan' }}
+          />
+          <Tabs.Screen
+            name="voice"
+            options={{ title: 'Voice' }}
+          />
+          <Tabs.Screen
+            name="history"
+            options={{ title: 'History' }}
+          />
+          <Tabs.Screen
+            name="settings"
+            options={{ title: 'Settings' }}
+          />
+        </Tabs>
+      </View>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.bg,
+  },
+  tabContainer: {
+    flex: 1,
+    backgroundColor: colors.bg,
+  },
+  tabBar: {
+    backgroundColor: colors.cardDeep,
+    elevation: 0,
+    shadowOpacity: 0,
+    marginHorizontal: 16,
+    borderRadius: 24,
+    height: 48,
+    borderWidth: 1,
+    borderColor: colors.border,
+    marginBottom: 16,
+    justifyContent: 'center',
+    padding: 4,
+  },
+  tabIndicator: {
+    backgroundColor: colors.accent,
+    height: '100%',
+    borderRadius: 20,
+  },
+  tabItem: {
+    padding: 0,
+    height: 38,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tabLabel: {
+    fontSize: 13,
+    fontWeight: '500',
+    textTransform: 'none',
+    textAlign: 'center',
+  },
+});
