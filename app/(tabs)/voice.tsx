@@ -31,7 +31,7 @@ export default function VoiceTab() {
       </View>
 
       <View style={styles.content}>
-        {activeTab === 'live' ? <VoiceScreen /> : <AudioScreen />}
+        {activeTab === 'live' ? <VoiceScreen /> : <AudioScreen onResults={() => {}} />}
       </View>
     </View>
   );
