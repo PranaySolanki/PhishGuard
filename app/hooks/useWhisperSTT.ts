@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { Platform } from 'react-native';
+// TODO: Migrate to expo-audio when SDK 55 ships — expo-audio has known Android stop() bugs in SDK 54
 import { Audio } from 'expo-av';
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
 let initWhisper: any;
 type WhisperContext = any;
 try {

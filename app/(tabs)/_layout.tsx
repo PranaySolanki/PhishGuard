@@ -1,7 +1,7 @@
 import React from 'react';
 import { withLayoutContext } from 'expo-router';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { SafeAreaView, StatusBar, Platform, StyleSheet, View } from 'react-native';
+import { StatusBar, Platform, StyleSheet, View } from 'react-native';
 import { colors } from '../theme/colors';
 import AppHeader from '../../components/AppHeader';
 

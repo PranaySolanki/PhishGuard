@@ -28,3 +28,5 @@ export const getRiskText = (score: number) =>
   score >= 70 ? colors.dangerText : score >= 40 ? colors.warningText : colors.safeText;
 export const getVerdict = (score: number): 'High Risk' | 'Suspicious' | 'Safe' =>
   score >= 70 ? 'High Risk' : score >= 40 ? 'Suspicious' : 'Safe';
+
+export default colors;

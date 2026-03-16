@@ -209,3 +209,6 @@ export const computeStats = (results: AnalysisResult[]): DashboardStats => {
     topLanguage,
   };
 };
+
+// Required by Expo Router — this file lives inside app/ but is not a route
+export default function __route() { return null; }
