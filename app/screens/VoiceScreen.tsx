@@ -108,7 +108,7 @@ export default function VoiceScreen() {
                 key={i}
                 style={seg.isPhishing ? styles.highlightWord : styles.normalWord}
               >
-                {seg.text}{' '}
+                {seg.wasRedacted ? '🛡' : ''}{seg.text}{' '}
               </Text>
             ))}
           </Text>

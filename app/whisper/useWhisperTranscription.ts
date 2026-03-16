@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+// TODO: Migrate to expo-audio when SDK 55 ships — expo-audio has known Android stop() bugs in SDK 54
 import { Audio } from 'expo-av';
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
+import { redactPII } from '../data/piiRedactor';
 let initWhisper: any;
 type WhisperContext = any;
 try {
@@ -10,8 +12,9 @@ try {
 }
 
 export type TranscriptSegment = {
-  text: string;
+  text: string;        // redacted text shown to user
   isPhishing: boolean;
+  wasRedacted: boolean; // true if PII was found and masked in this chunk
 };
 
 const PHISHING_KEYWORDS = [
@@ -118,13 +121,16 @@ export function useWhisperTranscription() {
         tokenTimestamps: false,
       });
 
-      const text = result?.trim();
-      if (!text) return;
+      const rawText = result?.trim();
+      if (!rawText) return;
+
+      // 🛡 Redact PII before any further processing or storage
+      const { redacted: text, hadPII } = redactPII(rawText);
 
       allTextRef.current += ' ' + text;
 
       const isPhish = hasPhishingKeyword(text);
-      setSegments(prev => [...prev, { text, isPhishing: isPhish }]);
+      setSegments(prev => [...prev, { text, isPhishing: isPhish, wasRedacted: hadPII }]);
 
       const phishCount = allTextRef.current
         .split(' ')

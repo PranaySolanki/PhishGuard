@@ -1,4 +1,4 @@
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
 
 export const WHISPER_MODEL_URL =
   'https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.bin';
@@ -63,3 +63,5 @@ export async function deleteModel(): Promise<void> {
   const exists = await isModelDownloaded();
   if (exists) await FileSystem.deleteAsync(MODEL_PATH, { idempotent: true });
 }
+
+export default function __route() { return null; }
