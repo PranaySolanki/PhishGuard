@@ -1,14 +1,4 @@
-/**
- * piiRedactor.ts
- *
- * On-device PII sanitisation layer.
- * Runs BEFORE any text is sent to an LLM (Gemini).
- * 100% offline — pure regex, no network calls.
- *
- * Design principle: replace sensitive values with labelled tokens so the
- * LLM still understands the context ("My card number is [CARD_NUMBER]")
- * without ever seeing the actual value.
- */
+
 
 export type RedactionEntry = {
   /** Human-readable label shown to the user, e.g. "Credit card number" */
@@ -28,12 +18,7 @@ export type RedactionResult = {
   hadPII: boolean;
 };
 
-// ---------------------------------------------------------------------------
-// Pattern definitions
-// ---------------------------------------------------------------------------
-// Each rule: { label, token, pattern }
-// Rules are applied IN ORDER — more specific patterns first.
-// ---------------------------------------------------------------------------
+
 
 const RULES: { label: string; token: string; pattern: RegExp }[] = [
 
