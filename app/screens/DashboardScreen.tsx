@@ -83,25 +83,6 @@ export default function DashboardScreen({ results, onSelect }: Props) {
         </View>
       </View>
 
-      {riskBars.length > 1 && (
-        <View style={styles.card}>
-          <BarChart bars={riskBars} height={90} title="Risk scores by scan" />
-        </View>
-      )}
-
-      <View style={styles.chartsRow}>
-        {langBars.length > 1 && (
-          <View style={[styles.card, { flex: 1 }]}>
-            <BarChart bars={langBars} height={70} title="By language" />
-          </View>
-        )}
-        {typeBars.length > 1 && (
-          <View style={[styles.card, { flex: 1 }]}>
-            <BarChart bars={typeBars} height={70} title="By type" />
-          </View>
-        )}
-      </View>
-
       <Text style={styles.sectionLabel}>Recent scans</Text>
 
       {recent.map(r => (
